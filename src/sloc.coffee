@@ -11,7 +11,7 @@ keys = [
   'block'     # lines with block comments
   'mixed'     # lines mixed up with source and comments
   'empty'     # empty lines
-  'todo'
+  'todo'      # lines with "TODO" in them
   ]
 
 nonEmpty    = /[^\s]/
@@ -28,12 +28,12 @@ getCommentExpressions = (lang) ->
 
       when "coffee", "iced"
         /\#[^\{]/ # hashtag not followed by opening curly brace
-      when "cr", "py", "ls", "mochi", "nix", "r", "rb", "jl", "pl", "yaml", "hr"
+      when "cr", "py", "ls", "mochi", "nix", "r", "rb", "jl", "pl", "yaml", "hr", "cmake"
         /\#/
       when "js", "jsx", "c", "cc", "cpp", "cs", "cxx", "h", "m", "mm", "hpp", \
            "hx", "hxx", "ino", "java", "php", "php5", "go", "groovy", "scss", \
            "less", "rs", "sass", "styl", "scala", "swift", "ts", "jade", "gs", \
-           "nut", "kt", "kts", "tsx"
+           "nut", "kt", "kts", "tsx", "ixx"
         /\/{2}/
       when "lua", "hs"
         /--/
@@ -72,7 +72,7 @@ getCommentExpressions = (lang) ->
     when "js", "jsx", "c", "cc", "cpp", "cs", "cxx", "h", "m", "mm", "hpp", \
          "hx", "hxx", "ino", "java", "ls", "nix", "php", "php5", "go", \
          "css", "sass", "scss", "less", "rs", "styl", "scala", "ts", "gs", \
-         "groovy", "nut", "kt", "kts", "tsx"
+         "groovy", "nut", "kt", "kts", "tsx", "ixx"
       start = /\/\*+/
       stop  = /\*\/{1}/
 
@@ -255,6 +255,7 @@ extensions = [
   "cc"
   "clj"
   "cljs"
+  "cmake"
   "coffee"
   "cpp"
   "cr"
@@ -276,6 +277,7 @@ extensions = [
   "hy"
   "iced"
   "ino"
+  "ixx"
   "jade"
   "java"
   "jl"
