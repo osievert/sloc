@@ -11,6 +11,9 @@ module.exports = (data, options, fmtOpts) ->
 
   head = if 'no-head' in fmtOpts then [] else (i18n.en[k] for k in heads)
 
+  if (s = data.summary)?
+      head.push('files')
+
   table = new Table { head }
 
   statToArray = (d) -> d[k] for k in keys
@@ -19,8 +22,8 @@ module.exports = (data, options, fmtOpts) ->
     table.push [f.path, statToArray(f.stats)...] for f in data.files
 
   else if (s = data.summary)?
-    table.push ['- Total -', statToArray(s)...]
+    table.push ['- Total -', statToArray(s)..., data.files.length]
     for ext, d of data.byExt when (s = d.summary)?
-      table.push [ext, statToArray(s)...]
+      table.push [ext, statToArray(s)..., d.files.length]
 
   table.toString()
